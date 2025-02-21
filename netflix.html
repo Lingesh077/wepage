@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+        }
+        .main1 {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        #img1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            filter: brightness(30%);
+        }
+        #logo {
+            position: absolute;
+            width: 300px;
+            top: 0;
+            filter: brightness(350%);
+            border-radius: 60%;
+        }
+        .main12 {
+            position: absolute;
+            top: 100px;
+            left: 350px;
+            color: azure;
+            text-align: center;
+            font-size: 30px;
+            font-weight: bolder;
+        }
+        .main13 {
+            position: absolute;
+            top: 520px;
+            left: 500px;
+        }
+        .main13 button {
+            background-color: rgb(235, 28, 5);
+            color: white;
+            height: 50px;
+            width: 200px;
+            font-size: x-large;
+            border: none;
+            cursor: pointer;
+        }
+        .div1 {
+            text-align: center;
+            padding: 20px;
+        }
+        .t3 {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .t3 img {
+            width: 200px;
+            height: 300px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .t3 img:hover {
+            transform: scale(1.1);
+        }
+        .movie-details {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .movie-details img {
+            width: 300px;
+            height: 400px;
+        }
+        .subscription {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .subscription button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .qr-code {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .qr-code img {
+            width: 250px;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main1">
+        <img src="netflix.jpg" alt="movies" id="img1"> 
+    </div>
+    <img src="netflixlog.png" alt="logo" id="logo">
+    <div class="main12">
+        <h1>Unlimited Movies</h1>
+        <h1><b>TV Shows and more</b></h1>
+        <h3>Starts at $149. Cancel at any time</h3>
+        <p>Ready to watch? Enter your email to create or restart your membership.</p>
+    </div>
+    <div class="main13">
+        <table>
+            <tr>
+                <td><input type="text" placeholder="Enter Email"></td>
+                <td><button onclick="redirectToTrailerPage()"><b>Get started ></b></button></td>
+            </tr>
+        </table> 
+    </div>
+    <div class="div1">
+        <h1>Trending Movies</h1>
+        <div class="t3">
+            <img src="ps1.jpg" alt="Ponniyin Selvan" onclick="showMovieDetails('Ponniyin Selvan', 'ps1.jpg', 'Vikram', 'Karthi', 'Mani Ratnam', 4.5)">
+            <img src="vij.jpg" alt="GOAT" onclick="showMovieDetails('GOAT', 'vij.jpg', 'Vijay', 'Sanjay Dutt', 'Venkat Prabhu', 4.2)">
+            <img src="vik.jpg" alt="Vikram" onclick="showMovieDetails('Vikram', 'vik.jpg', 'Kamal Haasan', 'Vijay Sethupathi', 'Lokesh Kanagaraj', 4.8)">
+            <img src="vk.jpg" alt="Cobra" onclick="showMovieDetails('Cobra', 'vk.jpg', 'Vikram', 'Irfan Pathan', 'Ajay Gnanamuthu', 4.0)">
+        </div>
+    </div>
+    <div class="movie-details" id="movieDetails"></div>
+    <div class="subscription">
+        <button onclick="showQRCode('monthly')">Subscribe Monthly</button>
+        <button onclick="showQRCode('yearly')">Subscribe Yearly</button>
+    </div>
+    <div class="qr-code" id="qrCode">
+        <h2>Scan to Pay</h2>
+        <img src="qrcode.png" alt="QR Code">
+    </div>
+    <h1 style="text-align: center;">ENJOY WATCHING MOVIES</h1>
+    <div>
+       <h3 style="text-align: end;">All rights reserved @ gnetwork</h3>
+    </div>
+    <script>
+        function showMovieDetails(name, image, hero, villain, director, rating) {
+            let details = document.getElementById("movieDetails");
+            details.innerHTML = `
+                <h2>${name}</h2>
+                <img src="${image}" alt="${name}">
+                <p><strong>Hero:</strong> ${hero}</p>
+                <p><strong>Villain:</strong> ${villain}</p>
+                <p><strong>Director:</strong> ${director}</p>
+                <p><strong>Reviews:</strong> ${'⭐'.repeat(Math.round(rating))} (${rating}/5)</p>
+            `;
+            details.style.display = "block";
+        }
+        
+    function redirectToTrailerPage() {
+        window.location.href = "trailer.html";
+    }
+
+
+        
+        function showQRCode(plan) {
+    let qrDiv = document.getElementById("qrCode");
+    let amount = plan === 'monthly' ? "$9.99" : "$99.99";
+    qrDiv.innerHTML = `
+        <h2>Scan to Pay - ${amount}</h2>
+        <img src="scan.png" alt="QR Code">
+    `;
+    qrDiv.style.display = "block";
+}
+
+        
+        
+    </script>
+</body>
+</html>

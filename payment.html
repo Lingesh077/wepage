@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            
+        }
+        .payment-container {
+            margin-top: 50px;
+        }
+        img {
+            width: 250px;
+            height: 250px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        body{
+            background-image: url('logo.jpg');
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>Scan the QR Code to Pay</h1>
+        <img src="scan.png" alt="Payment QR Code">
+        <p>After payment, you will be redirected automatically.</p>
+        <button onclick="goBack()">Cancel</button>
+    </div>
+    <div class="qr-code" id="qrCode">
+        <h2>Scan to Pay</h2>
+        <img src="qrcode.png" alt="QR Code">
+    </div>
+    <script>
+        function showMovieDetails(name, image, hero, villain, director, rating) {
+            let details = document.getElementById("movieDetails");
+            details.innerHTML = `
+                <h2>${name}</h2>
+                <img src="${image}" alt="${name}">
+                <p><strong>Hero:</strong> ${hero}</p>
+                <p><strong>Villain:</strong> ${villain}</p>
+                <p><strong>Director:</strong> ${director}</p>
+                <p><strong>Reviews:</strong> ${'⭐'.repeat(Math.round(rating))} (${rating}/5)</p>
+            `;
+            details.style.display = "block";
+        }
+        function showQRCode(plan) {
+    let qrDiv = document.getElementById("qrCode");
+    let amount = plan === 'monthly' ? "$9.99" : "$99.99";
+    qrDiv.innerHTML = `
+        <h2>Scan to Pay - ${amount}</h2>
+        <img src="qrcode.png" alt="QR Code">
+    `;
+    qrDiv.style.display = "block";
+}
+
+        
+        function redirectToPayment() {
+            window.location.href = "payment.html";
+        }
+    </script>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
